@@ -527,4 +527,3 @@ plt.ylabel('Average Popularity')
 plt.xticks(rotation=0)
 plt.tight_layout()
 plt.show()
-
