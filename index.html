@@ -1,241 +1,309 @@
 <!DOCTYPE HTML>
-<!--
-	Massively by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
 <html>
-	<head>
-		<title>Thiago Pari Portfolio</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-		<style>
-			/* Additional styles for the project details section */
-			#project-details {
-				display: flex;
-			}
-			#project-details .tabs {
-				width: 200px;
-				display: flex;
-				flex-direction: column;
-				padding: 0;
-				margin: 0;
-			}
-			#project-details .tabs li {
-				list-style: none;
-				margin: 0;
-			}
-			#project-details .tabs li a {
-				display: block;
-				padding: 15px;
-				background: #2e2f31; /* Shade of brown when not selected */
-				color: white;
-				text-align: left;
-				text-decoration: none;
-				border-left: 4px solid transparent;
-			}
-			#project-details .tabs li a:hover,
-			#project-details .tabs li.active a {
-				background: white; /* White when selected */
-				color: #2e2f31; /* Brown text when selected */
-				border-left: 4px solid #2e2f31; /* Brown border when selected */
-			}
-			#project-details .tab-content {
-				flex-grow: 1;
-				padding: 20px;
-				border-left: 1px solid #ccc;
-			}
-			.button-group {
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				gap: 10px; /* Add spacing between the buttons if needed */
-			}
-			.button-group .button {
-				margin: 10px;
-			}
-		</style>
-	</head>
-	<body class="is-preload">
+<head>
+	<title>Thiago Pari Portfolio</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="assets/css/main.css" />
+	<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	<style>
+		/* Additional styles for the project details section */
+		#project-details {
+			display: flex;
+		}
+		#project-details .tabs {
+			width: 200px;
+			display: flex;
+			flex-direction: column;
+			padding: 0;
+			margin: 0;
+		}
+		#project-details .tabs li {
+			list-style: none;
+			margin: 0;
+		}
+		#project-details .tabs li a {
+			display: block;
+			padding: 15px;
+			background: #2e2f31; /* Shade of brown when not selected */
+			color: white;
+			text-align: left;
+			text-decoration: none;
+			border-left: 4px solid transparent;
+		}
+		#project-details .tabs li a:hover,
+		#project-details .tabs li.active a {
+			background: white; /* White when selected */
+			color: #2e2f31; /* Brown text when selected */
+			border-left: 4px solid #2e2f31; /* Brown border when selected */
+		}
+		#project-details .tab-content {
+			flex-grow: 1;
+			padding: 20px;
+			border-left: 1px solid #ccc;
+		}
+		.button-group {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			gap: 10px; /* Add spacing between the buttons if needed */
+			margin-top: 10px;
+		}
+		.button-group .button {
+			margin: 10px;
+		}
+		/* Flexbox styles for project layout */
+		.projects-container {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 20px;
+		}
+		.project-item {
+			flex: 1 1 calc(50% - 20px); /* Two items per row */
+			box-sizing: border-box;
+		}
+		.project-item.full {
+			flex: 1 1 100%; /* Full width item */
+		}
+	</style>
+</head>
+<body class="is-preload">
 
-		<!-- Wrapper -->
-		<div id="wrapper" class="fade-in">
+	<!-- Wrapper -->
+	<div id="wrapper" class="fade-in">
 
-			<!-- Intro -->
-			<div id="intro">
-				<h1>Thiago Pari Portfolio<br />
-				</h1>
-				<p>Data Analyst well versed in Excel, Python, R, SQL <a href="https://twitter.com/ajlkn">@ajlkn</a> for <a href="https://html5up.net">HTML5 UP</a><br />
-				<ul class="actions">
-					<li><a href="#header" class="button icon solid solo fa-arrow-down scrolly">Continue</a></li>
-				</ul>
-			</div>
-
-			<!-- Header -->
-			<header id="header">
-				<a href="index.html" class="logo">Thiago Pari</a>
-			</header>
-
-			<!-- Nav -->
-			<nav id="nav">
-				<ul class="links">
-					<li class="active"><a href="#" onclick="showSection('projects'); return false;">Projects</a></li>
-					<li><a href="#" onclick="showSection('resume'); return false;">Resume</a></li>
-				</ul>
-				<ul class="icons">
-					<li><a href="https://www.linkedin.com/in/thiago-pari/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
-					<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-				</ul>
-			</nav>
-
-			<!-- Main -->
-			<div id="main">
-
-				<!-- Projects Section -->
-				<section id="projects">
-					<article class="post featured">
-						<header class="major">
-							<h2><a href="https://en.wikipedia.org/wiki/Doge_(meme)">Data Cleaning & Analysis in Python<br />
-							</a></h2>
-							<p>Aenean ornare velit lacus varius enim ullamcorper proin aliquam<br />
-							facilisis ante sed etiam magna interdum congue. Lorem ipsum dolor<br />
-							amet nullam sed etiam veroeros.</p>
-						</header>
-						<a href="#" class="image main"><img src="images/Spotify Horizontal Logo.png" alt="" /></a>
-						<ul class="actions special">
-							<li><a href="#" class="button large" onclick="showProjectDetails('spotify-project'); return false;">View Project</a></li>
-						</ul>
-					</article>
-
-					<section class="posts">
-						<article>
-							<header>
-								<span class="date">April 24, 2017</span>
-								<h2><a href="#">Sed magna<br />
-								ipsum faucibus</a></h2>
-							</header>
-							<a href="#" class="image fit"><img src="images/pic02.jpg" alt="" /></a>
-							<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis magna etiam.</p>
-							<ul class="actions special">
-								<li><a href="#" class="button">View Project</a></li>
-							</ul>
-						</article>
-						<article>
-							<header>
-								<span class="date">April 22, 2017</span>
-								<h2><a href="#">Primis eget<br />
-								imperdiet lorem</a></h2>
-							</header>
-							<a href="#" class="image fit"><img src="images/pic03.jpg" alt="" /></a>
-							<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis magna etiam.</p>
-							<ul class="actions special">
-								<li><a href="#" class="button">View Project</a></li>
-							</ul>
-						</article>
-					</section>
-				</section>
-
-				<!-- Project Details Section -->
-				<section id="spotify-project" style="display:none;">
-					<header class="major">
-						<h2>Spotify Data Cleaning & Analysis</h2>
-						<p>Detailed view of the project.</p>
-					</header>
-					<div id="project-details">
-						<nav>
-							<ul class="tabs">
-								<li class="active"><a href="#" onclick="showTab('summary'); return false;">Summary</a></li>
-								<li><a href="#" onclick="showTab('data-description'); return false;">Data Description</a></li>
-							</ul>
-						</nav>
-						<div class="tab-content">
-							<div id="summary" class="tab" style="display:block;">
-								<iframe src="DS Project.pdf" style="width:100%; height:1000px;" frameborder="0"></iframe>
-								<ul class="button-group">
-									<a href="DS Project.py" class="button" download>Download Code</a>
-									<a href="spotify52kData.csv" class="button" download>Download Data Set</a>
-								</ul>								
-							</div>
-							<div id="data-description" class="tab" style="display:none;">
-								<iframe src="Data Description.pdf" style="width:100%; height:1000px;" frameborder="0"></iframe>
-								<ul class="button-group">
-									<a href="DS Project.py" class="button" download>Download Code</a>
-									<a href="spotify52kData.csv" class="button" download>Download Data Set</a>
-								</ul>								
-							</div>
-						</div>
-					</div>
-				</section>
-
-				<!-- Resume Section -->
-				<section id="resume" style="display:none;">
-					<header class="major">
-						<h2>Resume</h2>
-						<p>Preview my resume below or click the button to download the full version.</p>
-					</header>
-					<iframe src="Pari Resume.pdf" style="width:100%; height:1000px;" frameborder="0"></iframe>
-				</section>
-
-				<section class="split contact">
-					<section class="alt">
-						<h3>Location</h3>
-						<p>Brooklyn, NY 11201</p>
-					</section>
-					<section>
-						<h3>Phone</h3>
-						<p>(347) 409-0333</p>
-					</section>
-					<section>
-						<h3>Email</h3>
-						<p>thiago.pari@gmail.com</p>
-					</section>
-					<section>
-						<h3>Social</h3>
-						<ul class="icons alt">
-							<li><a href="https://www.linkedin.com/in/thiago-pari/" class="icon brands alt fa-linkedin"><span class="label">LinkedIn</span></a></li>
-							<li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
-						</ul>
-					</section>
-				</section>
-			</footer>
-
-			<!-- Copyright -->
-			<div id="copyright">
-				<ul><li>&copy; Untitled</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
-			</div>
-
+		<!-- Intro -->
+		<div id="intro">
+			<h1>Thiago Pari Portfolio<br /></h1>
+			<p>Data Analyst well versed in Excel, Python, R, SQL, Tableau <br />
+			<ul class="actions">
+				<li><a href="#header" class="button icon solid solo fa-arrow-down scrolly">Continue</a></li>
+			</ul>
 		</div>
 
-		<!-- Scripts -->
-		<script src="assets/js/jquery.min.js"></script>
-		<script src="assets/js/jquery.scrollex.min.js"></script>
-		<script src="assets/js/jquery.scrolly.min.js"></script>
-		<script src="assets/js/browser.min.js"></script>
-		<script src="assets/js/breakpoints.min.js"></script>
-		<script src="assets/js/util.js"></script>
-		<script src="assets/js/main.js"></script>
-		<script>
-			function showSection(section) {
-				document.getElementById('projects').style.display = 'none';
-				document.getElementById('resume').style.display = 'none';
-				document.getElementById('spotify-project').style.display = 'none';
-				document.getElementById(section).style.display = 'block';
-				document.querySelectorAll('#nav ul.links li').forEach(li => li.classList.remove('active'));
-				document.querySelector(`#nav ul.links li a[onclick*='${section}']`).parentElement.classList.add('active');
-			}
+		<!-- Header -->
+		<header id="header">
+			<a href="index.html" class="logo">Thiago Pari</a>
+		</header>
 
-			function showProjectDetails(project) {
-				showSection(project);
-			}
+		<!-- Nav -->
+		<nav id="nav">
+			<ul class="links">
+				<li class="active"><a href="#" onclick="showSection('projects'); return false;">Projects</a></li>
+			</ul>
+			<ul class="icons">
+				<li><a href="https://www.linkedin.com/in/thiago-pari/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+				<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+			</ul>
+		</nav>
 
-			function showTab(tab) {
-				document.querySelectorAll('.tab').forEach(tabContent => tabContent.style.display = 'none');
-				document.getElementById(tab).style.display = 'block';
-				document.querySelectorAll('.tabs li').forEach(tabLink => tabLink.classList.remove('active'));
-				document.querySelector(`.tabs li a[onclick*='${tab}']`).parentElement.classList.add('active');
+		<!-- Main -->
+		<div id="main">
+
+			<!-- Projects Section -->
+			<section id="projects" class="projects-container">
+				<article class="post featured project-item full">
+					<header class="major">
+						<h2><a href="#" onclick="showProjectDetails('spotify-project'); return false;">Data Cleaning & Analysis in Python<br /></a></h2>
+					</header>
+					<a href="#" class="image main" onclick="showProjectDetails('spotify-project'); return false;"><img src="images/Spotify Horizontal Logo.png" alt="" /></a>
+					<p>Data cleaning and analysis using Python. I performed comprehensive data preprocessing, exploratory data analysis, and applied various machine learning techniques, including linear regression, polynomial regression, and principal component analysis (PCA), to uncover insights into song popularity and feature correlations. This project demonstrates my proficiency in data science and my ability to extract meaningful conclusions from complex datasets.</p>
+					<ul class="actions special">
+						<li><a href="#" class="button large" onclick="showProjectDetails('spotify-project'); return false;">View Project</a></li>
+					</ul>
+				</article>
+
+				<section class="posts project-item">
+					<article>
+						<header>
+							<h2><a href="#" onclick="showProjectDetails('R-project'); return false;">Econometric Analysis of Labor Force Participation and Teaching Evaluations in R<br /></a></h2>
+						</header>
+						<a href="#" class="image fit" onclick="showProjectDetails('R-project')"><img src="images/Labor force.webp" alt="" /></a>
+						<p>This project focuses on the labor force participation of married women. Using the MROZ dataset, I employed linear, Probit, and Logit models to estimate labor force participation based on covariates such as income, education, experience, age, and presence of children. Additionally, I predicted labor force participation probabilities and examined the effects of different factors on these probabilities.</p>
+						<ul class="actions special">
+							<li><a href="#" class="button large" onclick="showProjectDetails('R-project'); return false;">View Project</a></li>
+						</ul>
+					</article>
+				</section>
+
+				<section class="posts project-item">
+					<article>
+						<header>
+							<h2><a href="#" onclick="showProjectDetails('R-project-I'); return false;">Econometric Analysis of Income Distribution in R<br /></a></h2>
+						</header>
+						<a href="#" class="image fit" onclick="showProjectDetails('R-project-I')"><img src="images/Salary image.jpeg" alt="" /></a>
+						<p>I analyzed the relationship between weekly earnings, hours worked, sex, race, and age. Analysis involved data cleaning, filtering respondents aged 25-65 from Massachusetts, and handling missing data. Key tasks included calculating the share of workers working more than 0 hours, plotting earnings and wages against hours worked, and exploring wage differences between males and females.</p>
+						<ul class="actions special">
+							<li><a href="#" class="button large" onclick="showProjectDetails('R-project-I'); return false;">View Project</a></li>
+						</ul>
+					</article>
+				</section>
+			</section>
+
+			<!-- Project Details Section -->
+			<section id="spotify-project" style="display:none;">
+				<header class="major">
+					<h2>Spotify Data Cleaning & Analysis</h2>
+					<p>Data cleaning and analysis using Python. I performed comprehensive data preprocessing, exploratory data analysis, and applied various machine learning techniques, including linear regression, polynomial regression, and principal component analysis (PCA), to uncover insights into song popularity and feature correlations. This project demonstrates my proficiency in data science and my ability to extract meaningful conclusions from complex datasets.</p>
+				</header>
+				<div id="project-details">
+					<nav>
+						<ul class="tabs">
+							<li class="active"><a href="#" onclick="showTab('spotify-summary'); return false;">Summary</a></li>
+							<li><a href="#" onclick="showTab('spotify-data-description'); return false;">Data Description</a></li>
+						</ul>
+					</nav>
+					<div class="tab-content">
+						<div id="spotify-summary" class="tab" style="display:block;">
+							<iframe src="DS Project.pdf" style="width:100%; height:1000px;" frameborder="0"></iframe>
+							<ul class="button-group">
+								<a href="DS Project.py" class="button" download>Download Code</a>
+								<a href="spotify52kData.csv" class="button" download>Download Data Set</a>
+							</ul>								
+						</div>
+						<div id="spotify-data-description" class="tab" style="display:none;">
+							<iframe src="Data Description.pdf" style="width:100%; height:1000px;" frameborder="0"></iframe>
+							<ul class="button-group">
+								<a href="DS Project.py" class="button" download>Download Code</a>
+								<a href="spotify52kData.csv" class="button" download>Download Data Set</a>
+							</ul>								
+						</div>
+					</div>
+				</div>
+			</section>
+			<section id="R-project" style="display:none;">
+				<header class="major">
+					<h2>Econometric Analysis of Labor Force Participation and Teaching Evaluations in R</h2>
+					<p>This project focuses on the labor force participation of married women. Using the MROZ dataset, I employed linear, Probit, and Logit models to estimate labor force participation based on covariates such as income, education, experience, age, and presence of children. Additionally, I predicted labor force participation probabilities and examined the effects of different factors on these probabilities.</p>
+				</header>
+				<div id="project-details">
+					<nav>
+						<ul class="tabs">
+							<li class="active"><a href="#" onclick="showTab('r-summary'); return false;">Summary</a></li>
+							<li><a href="#" onclick="showTab('MROZ-data-description'); return false;">Mroz Description</a></li>
+							<li><a href="#" onclick="showTab('Teaching-data-description'); return false;">Teaching Data Description</a></li>
+						</ul>
+					</nav>
+					<div class="tab-content">
+						<div id="r-summary" class="tab" style="display:block;">
+							<iframe src="Econometrics Project II/Econometrics_II_Github-2.pdf" style="width:100%; height:1000px;" frameborder="0"></iframe>
+							<ul class="button-group">
+								<a href="Econometrics Project II/Econometrics Project II.R" class="button" download>Download Code</a>
+								<a href="Econometrics Project II/mroz.dta" class="button" download>Download MROZ Set</a>
+								<a href="Econometrics Project II/TeachingRatings.csv" class="button" download>Download Teaching Ratings Data Set</a>
+							</ul>								
+						</div>
+						<div id="MROZ-data-description" class="tab" style="display:none;">
+							<iframe src="Econometrics Project II/MROZ Description.txt" style="width:100%; height:1000px;" frameborder="0"></iframe>
+							<ul class="button-group">
+								<a href="Econometrics Project II/Econometrics Project II.R" class="button" download>Download Code</a>
+								<a href="Econometrics Project II/mroz.dta" class="button" download>Download MROZ Set</a>
+								<a href="Econometrics Project II/TeachingRatings.csv" class="button" download>Download Teaching Ratings Data Set</a>
+							</ul>
+						</div>
+						<div id="Teaching-data-description" class="tab" style="display:none;">
+							<iframe src="Econometrics Project II/TeachingRatings_Description.pdf" style="width:100%; height:1000px;" frameborder="0"></iframe>
+							<ul class="button-group">
+								<a href="Econometrics Project II/Econometrics Project II.R" class="button" download>Download Code</a>
+								<a href="Econometrics Project II/mroz.dta" class="button" download>Download MROZ Set</a>
+								<a href="Econometrics Project II/TeachingRatings.csv" class="button" download>Download Teaching Ratings Data Set</a>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section id="R-project-I" style="display:none;">
+				<header class="major">
+					<h2>Econometric Analysis of Income Distribution in R</h2>
+					<p>I analyzed the relationship between weekly earnings, hours worked, sex, race, and age. Analysis involved data cleaning, filtering respondents aged 25-65 from Massachusetts, and handling missing data. Key tasks included calculating the share of workers working more than 0 hours, plotting earnings and wages against hours worked, and exploring wage differences between males and females.</p>
+				</header>
+				<div id="project-details">
+					<nav>
+						<ul class="tabs">
+							<li class="active"><a href="#" onclick="showTab('r-i-summary'); return false;">Summary</a></li>
+						</ul>
+					</nav>
+					<div class="tab-content">
+						<div id="r-i-summary" class="tab" style="display:block;">
+							<iframe src="Econometrics Project I/Econometrics_I_Github.pdf" style="width:100%; height:1000px;" frameborder="0"></iframe>
+							<ul class="button-group">
+								<a href="Econometrics Project I/Econometrics Project.R" class="button" download>Download Code</a>
+								<a href="Econometrics Project I/morg16.zip" class="button" download>Download Data Set</a>
+							</ul>								
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="split contact">
+				<section class="alt">
+					<h3>Location</h3>
+					<p>Brooklyn, NY 11201</p>
+				</section>
+				<section>
+					<h3>Phone</h3>
+					<p>(347) 409-0333</p>
+				</section>
+				<section>
+					<h3>Email</h3>
+					<p>tp2330@nyu.edu</p>
+				</section>
+				<section>
+					<h3>Social</h3>
+					<ul class="icons alt">
+						<li><a href="https://www.linkedin.com/in/thiago-pari/" class="icon brands alt fa-linkedin"><span class="label">LinkedIn</span></a></li>
+						<li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+					</ul>
+				</section>
+			</section>
+		</footer>
+
+		<!-- Copyright -->
+		<div id="copyright">
+			<ul><li>&copy; Untitled</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+		</div>
+
+	</div>
+
+	<!-- Scripts -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery.scrollex.min.js"></script>
+	<script src="assets/js/jquery.scrolly.min.js"></script>
+	<script src="assets/js/browser.min.js"></script>
+	<script src="assets/js/breakpoints.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+	<script>
+		function showSection(section) {
+			document.getElementById('projects').style.display = 'none';
+			document.getElementById('spotify-project').style.display = 'none';
+			document.getElementById('R-project').style.display = 'none';
+			document.getElementById('R-project-I').style.display = 'none';
+			document.getElementById(section).style.display = 'block';
+			document.querySelectorAll('#nav ul.links li').forEach(li => li.classList.remove('active'));
+			document.querySelector(`#nav ul.links li a[onclick*='${section}']`).parentElement.classList.add('active');
+
+			if (section === 'projects') {
+				// Force re-layout to ensure flexbox properties are applied correctly
+				let projectsContainer = document.querySelector('.projects-container');
+				projectsContainer.style.display = 'none';
+				setTimeout(() => {
+					projectsContainer.style.display = 'flex';
+				}, 0);
 			}
-		</script>
-	</body>
+		}
+
+		function showProjectDetails(project) {
+			showSection(project);
+		}
+
+		function showTab(tab) {
+			document.querySelectorAll('.tab').forEach(tabContent => tabContent.style.display = 'none');
+			document.getElementById(tab).style.display = 'block';
+			document.querySelectorAll('.tabs li').forEach(tabLink => tabLink.classList.remove('active'));
+			document.querySelector(`.tabs li a[onclick*='${tab}']`).parentElement.classList.add('active');
+		}
+	</script>
+</body>
 </html>
