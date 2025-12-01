@@ -18,17 +18,18 @@
 		}
 
 		:root {
-			--bg-primary: #0a0e27;
-			--bg-secondary: #0f1629;
-			--bg-card: #151a35;
-			--text-primary: #e2e8f0;
-			--text-secondary: #94a3b8;
-			--text-dim: #64748b;
-			--accent: #60a5fa;
-			--accent-hover: #3b82f6;
-			--border: #1e293b;
+			--bg-primary: #ffffff;
+			--bg-secondary: #f8f9fa;
+			--bg-card: #ffffff;
+			--text-primary: #0f172a;
+			--text-secondary: #475569;
+			--text-dim: #94a3b8;
+			--accent: #2563eb;
+			--accent-hover: #1d4ed8;
+			--border: #e2e8f0;
 			--gradient-1: #3b82f6;
 			--gradient-2: #8b5cf6;
+			--shadow: rgba(0, 0, 0, 0.1);
 		}
 
 		body {
@@ -56,10 +57,11 @@
 			top: 0;
 			width: 100%;
 			padding: 1rem 2rem;
-			background: rgba(10, 14, 39, 0.8);
+			background: rgba(255, 255, 255, 0.9);
 			backdrop-filter: blur(10px);
 			z-index: 1000;
 			border-bottom: 1px solid var(--border);
+			box-shadow: 0 2px 10px var(--shadow);
 		}
 
 		.nav-container {
@@ -118,7 +120,7 @@
 			align-items: center;
 			justify-content: center;
 			padding: 0 2rem;
-			background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+			background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
 			position: relative;
 		}
 
@@ -253,6 +255,7 @@
 			color: var(--text-secondary);
 			border: 1px solid var(--border);
 			transition: all 0.3s ease;
+			box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 		}
 
 		.tech-item:hover {
@@ -342,7 +345,7 @@
 			color: var(--accent);
 		}
 
-		/* Projects Grid */
+		/* Project Cards */
 		.projects-grid {
 			display: grid;
 			grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -359,12 +362,13 @@
 			display: flex;
 			flex-direction: column;
 			height: 100%;
+			box-shadow: 0 4px 6px var(--shadow);
 		}
 
 		.project-card:hover {
 			transform: translateY(-5px);
 			border-color: var(--accent);
-			box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+			box-shadow: 0 20px 40px rgba(37, 99, 235, 0.15);
 		}
 
 		.project-image {
@@ -446,6 +450,7 @@
 			padding: 2rem;
 			border-radius: 12px;
 			border: 1px solid var(--border);
+			box-shadow: 0 4px 6px var(--shadow);
 		}
 
 		.skill-category h3 {
@@ -488,11 +493,12 @@
 
 		/* Contact Section */
 		.contact-section {
-			background: var(--bg-card);
+			background: var(--bg-secondary);
 			border-radius: 12px;
 			padding: 3rem;
 			text-align: center;
 			border: 1px solid var(--border);
+			box-shadow: 0 4px 6px var(--shadow);
 		}
 
 		.contact-grid {
