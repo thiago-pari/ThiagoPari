@@ -1,69 +1,355 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-	<title>Thiago Pari Portfolio</title>
+	<title>Thiago Pari | Robotics Engineer</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<meta name="description" content="Robotics Engineer specializing in control systems, sensor fusion, and autonomous systems. Master's student at Northeastern University.">
 	<link rel="stylesheet" href="assets/css/main.css" />
 	<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	
 	<style>
-		/* Additional styles for the project details section */
-		#project-details {
-			display: flex;
+		/* Modern Engineering Portfolio Styles */
+		:root {
+			--primary-dark: #0A192F;
+			--accent-cyan: #64FFDA;
+			--accent-blue: #57cbff;
+			--text-light: #8892B0;
+			--text-slate: #ccd6f6;
+			--bg-navy: #112240;
+			--shadow: rgba(2,12,27,0.7);
 		}
-		#project-details .tabs {
-			width: 200px;
+
+		/* Enhanced Hero Section */
+		#intro {
+			min-height: 100vh;
 			display: flex;
 			flex-direction: column;
-			padding: 0;
-			margin: 0;
-		}
-		#project-details .tabs li {
-			list-style: none;
-			margin: 0;
-		}
-		#project-details .tabs li a {
-			display: block;
-			padding: 15px;
-			background: #2e2f31; /* Shade of brown when not selected */
-			color: white;
-			text-align: left;
-			text-decoration: none;
-			border-left: 4px solid transparent;
-		}
-		#project-details .tabs li a:hover,
-		#project-details .tabs li.active a {
-			background: white; /* White when selected */
-			color: #2e2f31; /* Brown text when selected */
-			border-left: 4px solid #2e2f31; /* Brown border when selected */
-		}
-		#project-details .tab-content {
-			flex-grow: 1;
-			padding: 20px;
-			border-left: 1px solid #ccc;
-		}
-		.button-group {
-			display: flex;
 			justify-content: center;
 			align-items: center;
-			gap: 10px; /* Add spacing between the buttons if needed */
-			margin-top: 10px;
+			text-align: center;
+			position: relative;
+			background: linear-gradient(135deg, #0A192F 0%, #112240 100%);
 		}
-		.button-group .button {
-			margin: 10px;
+
+		#intro h1 {
+			font-size: clamp(40px, 8vw, 80px);
+			margin-bottom: 0.5rem;
+			background: linear-gradient(135deg, #64FFDA, #57cbff);
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+			animation: gradientShift 3s ease infinite;
 		}
-		/* Flexbox styles for project layout */
-		.projects-container {
+
+		@keyframes gradientShift {
+			0%, 100% { background-position: 0% 50%; }
+			50% { background-position: 100% 50%; }
+		}
+
+		.subtitle {
+			color: var(--text-slate);
+			font-size: 1.5rem;
+			margin-bottom: 1rem;
+			font-weight: 600;
+		}
+
+		.tech-stack {
 			display: flex;
 			flex-wrap: wrap;
-			gap: 20px;
+			justify-content: center;
+			gap: 1rem;
+			margin-top: 2rem;
 		}
-		.project-item {
-			flex: 1 1 calc(50% - 20px); /* Two items per row */
-			box-sizing: border-box;
+
+		.tech-badge {
+			background: rgba(100, 255, 218, 0.1);
+			border: 1px solid var(--accent-cyan);
+			color: var(--accent-cyan);
+			padding: 0.5rem 1rem;
+			border-radius: 20px;
+			font-size: 0.9rem;
+			font-family: 'Courier New', monospace;
+			transition: all 0.3s ease;
 		}
-		.project-item.full {
-			flex: 1 1 100%; /* Full width item */
+
+		.tech-badge:hover {
+			background: rgba(100, 255, 218, 0.2);
+			transform: translateY(-2px);
+			box-shadow: 0 5px 15px rgba(100, 255, 218, 0.3);
+		}
+
+		/* Navigation Enhancement */
+		#nav {
+			background: rgba(10, 25, 47, 0.9);
+			backdrop-filter: blur(10px);
+			border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+		}
+
+		/* About Section */
+		.about-section {
+			background: linear-gradient(135deg, #f5f5f5 0%, #ffffff 100%);
+			padding: 6rem 4rem;
+		}
+
+		.about-content {
+			display: grid;
+			grid-template-columns: 1fr 2fr;
+			gap: 4rem;
+			max-width: 1200px;
+			margin: 0 auto;
+		}
+
+		.education-timeline {
+			position: relative;
+			padding-left: 2rem;
+		}
+
+		.education-timeline::before {
+			content: '';
+			position: absolute;
+			left: 0;
+			top: 0;
+			bottom: 0;
+			width: 2px;
+			background: var(--accent-cyan);
+		}
+
+		.timeline-item {
+			position: relative;
+			margin-bottom: 2rem;
+			padding-left: 1.5rem;
+		}
+
+		.timeline-item::before {
+			content: '';
+			position: absolute;
+			left: -2.5rem;
+			top: 0.5rem;
+			width: 12px;
+			height: 12px;
+			border-radius: 50%;
+			background: var(--accent-cyan);
+			border: 2px solid white;
+			box-shadow: 0 0 0 4px rgba(100, 255, 218, 0.2);
+		}
+
+		/* Skills Matrix */
+		.skills-section {
+			background: #f9f9f9;
+			padding: 4rem 2rem;
+		}
+
+		.skills-grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+			gap: 2rem;
+			max-width: 1200px;
+			margin: 0 auto;
+		}
+
+		.skill-category {
+			background: white;
+			padding: 2rem;
+			border-radius: 10px;
+			box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+			transition: transform 0.3s ease;
+		}
+
+		.skill-category:hover {
+			transform: translateY(-5px);
+			box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+		}
+
+		.skill-category h3 {
+			color: var(--primary-dark);
+			margin-bottom: 1.5rem;
+			font-size: 1.2rem;
+		}
+
+		.skill-item {
+			margin-bottom: 1rem;
+		}
+
+		.skill-bar {
+			background: #e0e0e0;
+			height: 8px;
+			border-radius: 4px;
+			overflow: hidden;
+			margin-top: 0.5rem;
+		}
+
+		.skill-progress {
+			height: 100%;
+			background: linear-gradient(90deg, var(--accent-cyan), var(--accent-blue));
+			border-radius: 4px;
+			transition: width 1s ease;
+		}
+
+		/* Project Cards */
+		.project-card {
+			background: white;
+			border-radius: 10px;
+			overflow: hidden;
+			box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+			transition: all 0.3s ease;
+			margin-bottom: 3rem;
+		}
+
+		.project-card:hover {
+			transform: translateY(-10px);
+			box-shadow: 0 20px 40px rgba(100,255,218,0.2);
+		}
+
+		.project-header {
+			background: linear-gradient(135deg, var(--primary-dark), var(--bg-navy));
+			color: white;
+			padding: 2rem;
+		}
+
+		.project-title {
+			font-size: 1.8rem;
+			margin-bottom: 0.5rem;
+			color: var(--accent-cyan);
+		}
+
+		.project-subtitle {
+			color: var(--text-slate);
+			font-size: 1.1rem;
+		}
+
+		.project-content {
+			padding: 2rem;
+		}
+
+		.project-tech {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 0.5rem;
+			margin-top: 1rem;
+		}
+
+		.tech-tag {
+			background: rgba(100, 255, 218, 0.1);
+			color: var(--primary-dark);
+			padding: 0.3rem 0.8rem;
+			border-radius: 15px;
+			font-size: 0.85rem;
+			border: 1px solid rgba(100, 255, 218, 0.3);
+		}
+
+		.project-links {
+			display: flex;
+			gap: 1rem;
+			margin-top: 1.5rem;
+		}
+
+		.project-link {
+			padding: 0.75rem 1.5rem;
+			border: 2px solid var(--accent-cyan);
+			color: var(--accent-cyan);
+			text-decoration: none;
+			border-radius: 5px;
+			transition: all 0.3s ease;
+			display: inline-flex;
+			align-items: center;
+			gap: 0.5rem;
+		}
+
+		.project-link:hover {
+			background: var(--accent-cyan);
+			color: var(--primary-dark);
+		}
+
+		.highlight-metric {
+			background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+			color: white;
+			padding: 1rem;
+			border-radius: 8px;
+			display: inline-block;
+			margin: 1rem 0;
+			font-weight: bold;
+		}
+
+		/* Contact Section */
+		.contact-section {
+			background: var(--primary-dark);
+			color: var(--text-slate);
+			padding: 4rem 2rem;
+			text-align: center;
+		}
+
+		.contact-grid {
+			display: flex;
+			justify-content: center;
+			gap: 3rem;
+			margin-top: 2rem;
+			flex-wrap: wrap;
+		}
+
+		.contact-item {
+			display: flex;
+			align-items: center;
+			gap: 0.5rem;
+		}
+
+		.contact-item a {
+			color: var(--accent-cyan);
+			text-decoration: none;
+			transition: color 0.3s ease;
+		}
+
+		.contact-item a:hover {
+			color: var(--accent-blue);
+		}
+
+		/* Animations */
+		.fade-in {
+			animation: fadeInUp 1s ease;
+		}
+
+		@keyframes fadeInUp {
+			from {
+				opacity: 0;
+				transform: translateY(30px);
+			}
+			to {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+
+		/* Currently Working On Section */
+		.current-work {
+			background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+			color: white;
+			padding: 3rem 2rem;
+			text-align: center;
+			margin: 3rem 0;
+		}
+
+		.current-work h3 {
+			font-size: 1.5rem;
+			margin-bottom: 1rem;
+		}
+
+		/* Responsive Design */
+		@media (max-width: 768px) {
+			.about-content {
+				grid-template-columns: 1fr;
+				gap: 2rem;
+			}
+			
+			.skills-grid {
+				grid-template-columns: 1fr;
+			}
+			
+			#intro h1 {
+				font-size: 3rem;
+			}
+			
+			.project-links {
+				flex-direction: column;
+			}
 		}
 	</style>
 </head>
@@ -74,9 +360,19 @@
 
 		<!-- Intro -->
 		<div id="intro">
-			<h1>Thiago Pari Portfolio<br /></h1>
-			<p>Data Analyst well versed in Excel, Python, R, SQL, Tableau <br />
-			<ul class="actions">
+			<h1>Thiago Pari</h1>
+			<p class="subtitle">Robotics Engineer & Computational Systems Designer</p>
+			<p>Master's in Robotics at Northeastern University<br/>
+			Specializing in Control Systems, Sensor Fusion, and Autonomous Systems</p>
+			<div class="tech-stack">
+				<span class="tech-badge">C++</span>
+				<span class="tech-badge">ROS2</span>
+				<span class="tech-badge">Python</span>
+				<span class="tech-badge">MATLAB/Simulink</span>
+				<span class="tech-badge">Kalman Filtering</span>
+				<span class="tech-badge">Control Systems</span>
+			</div>
+			<ul class="actions" style="margin-top: 3rem;">
 				<li><a href="#header" class="button icon solid solo fa-arrow-down scrolly">Continue</a></li>
 			</ul>
 		</div>
@@ -89,179 +385,375 @@
 		<!-- Nav -->
 		<nav id="nav">
 			<ul class="links">
-				<li class="active"><a href="#" onclick="showSection('projects'); return false;">Projects</a></li>
+				<li class="active"><a href="#projects">Projects</a></li>
+				<li><a href="#skills">Skills</a></li>
+				<li><a href="#experience">Experience</a></li>
+				<li><a href="#education">Education</a></li>
 			</ul>
 			<ul class="icons">
 				<li><a href="https://www.linkedin.com/in/thiago-pari/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
-				<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+				<li><a href="https://github.com/thiago-pari" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+				<li><a href="mailto:parimaquera.t@northeastern.edu" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
 			</ul>
 		</nav>
 
 		<!-- Main -->
 		<div id="main">
 
+			<!-- About Section -->
+			<section class="about-section" id="about">
+				<div class="about-content">
+					<div class="education-timeline">
+						<h2>Education Journey</h2>
+						<div class="timeline-item">
+							<h3>Northeastern University</h3>
+							<p><strong>Master's in Robotics</strong><br/>
+							GPA: 4.0/4.0<br/>
+							Expected: December 2027</p>
+						</div>
+						<div class="timeline-item">
+							<h3>New York University</h3>
+							<p><strong>B.A. Economics & Mathematics</strong><br/>
+							GPA: 3.6/4.0<br/>
+							Graduated: May 2025</p>
+						</div>
+					</div>
+					<div>
+						<h2>About Me</h2>
+						<p>I'm a robotics engineer with a unique interdisciplinary background combining mathematics, economics, and engineering. Currently pursuing my Master's in Robotics at Northeastern University, I specialize in control systems, sensor fusion, and autonomous systems.</p>
+						<p>My journey from quantitative finance to robotics has equipped me with strong analytical skills and a systems-thinking approach to problem-solving. I bring experience in numerical methods, state estimation, and real-time systems to create innovative robotic solutions.</p>
+						<p><strong>Research Interests:</strong> Multi-body dynamics, Sensor fusion algorithms, Autonomous navigation, Control theory applications</p>
+					</div>
+				</div>
+			</section>
+
+			<!-- Currently Working On -->
+			<section class="current-work">
+				<h3>🚀 Currently Working On</h3>
+				<p>Developing advanced path planning algorithms for multi-agent robotic systems using ROS2 and implementing real-time SLAM for autonomous navigation</p>
+			</section>
+
 			<!-- Projects Section -->
-			<section id="projects" class="projects-container">
-				<article class="post featured project-item full">
-					<header class="major">
-						<h2><a href="#" onclick="showProjectDetails('spotify-project'); return false;">Data Cleaning & Analysis in Python<br /></a></h2>
-					</header>
-					<a href="#" class="image main" onclick="showProjectDetails('spotify-project'); return false;"><img src="images/Spotify Horizontal Logo.png" alt="" /></a>
-					<p>Data cleaning and analysis using Python. I performed comprehensive data preprocessing, exploratory data analysis, and applied various machine learning techniques, including linear regression, polynomial regression, and principal component analysis (PCA), to uncover insights into song popularity and feature correlations. This project demonstrates my proficiency in data science and my ability to extract meaningful conclusions from complex datasets.</p>
-					<ul class="actions special">
-						<li><a href="#" class="button large" onclick="showProjectDetails('spotify-project'); return false;">View Project</a></li>
-					</ul>
+			<section id="projects" style="padding: 4rem 2rem;">
+				<header class="major">
+					<h2>Engineering Projects</h2>
+				</header>
+
+				<!-- WALL-E Project -->
+				<article class="project-card fade-in">
+					<div class="project-header">
+						<h3 class="project-title">3D Printed Animatronic WALL-E Robot</h3>
+						<p class="project-subtitle">6-DOF Robotic System with Advanced Kinematics</p>
+					</div>
+					<div class="project-content">
+						<p><strong>Overview:</strong> Designed and built a fully functional animatronic robot with complex kinematic chains and precise motion control.</p>
+						
+						<h4>Key Achievements:</h4>
+						<ul>
+							<li>Engineered kinematic chain model for 6-DOF system with 250+ custom SolidWorks parts</li>
+							<li>Developed C++ inverse kinematics solver for coordinated multi-axis servo control</li>
+							<li>Implemented PID controllers with feedforward compensation for trajectory tracking</li>
+							<li>Created physics-based Python simulation for control policy validation</li>
+						</ul>
+						
+						<div class="highlight-metric">
+							📊 Result: Sub-millimeter positioning accuracy with smooth motion profiles
+						</div>
+						
+						<div class="project-tech">
+							<span class="tech-tag">C++</span>
+							<span class="tech-tag">SolidWorks</span>
+							<span class="tech-tag">Inverse Kinematics</span>
+							<span class="tech-tag">PID Control</span>
+							<span class="tech-tag">Python</span>
+							<span class="tech-tag">3D Printing</span>
+						</div>
+						
+						<div class="project-links">
+							<a href="https://github.com/thiago-pari/wall-e-robot" class="project-link">
+								<i class="fab fa-github"></i> View Code
+							</a>
+							<a href="#" class="project-link">
+								<i class="fas fa-video"></i> Demo Video
+							</a>
+							<a href="#" class="project-link">
+								<i class="fas fa-file-alt"></i> Documentation
+							</a>
+						</div>
+					</div>
 				</article>
 
-				<section class="posts project-item">
-					<article>
-						<header>
-							<h2><a href="#" onclick="showProjectDetails('R-project'); return false;">Econometric Analysis of Labor Force Participation and Teaching Evaluations in R<br /></a></h2>
-						</header>
-						<a href="#" class="image fit" onclick="showProjectDetails('R-project')"><img src="images/Labor force.webp" alt="" /></a>
-						<p>This project focuses on the labor force participation of married women. Using the MROZ dataset, I employed linear, Probit, and Logit models to estimate labor force participation based on covariates such as income, education, experience, age, and presence of children. Additionally, I predicted labor force participation probabilities and examined the effects of different factors on these probabilities.</p>
-						<ul class="actions special">
-							<li><a href="#" class="button large" onclick="showProjectDetails('R-project'); return false;">View Project</a></li>
+				<!-- GPS/IMU Project -->
+				<article class="project-card fade-in">
+					<div class="project-header">
+						<h3 class="project-title">GPS/IMU Sensor Fusion System</h3>
+						<p class="project-subtitle">Advanced State Estimation with Kalman Filtering</p>
+					</div>
+					<div class="project-content">
+						<p><strong>Overview:</strong> Developed robust sensor fusion algorithms for accurate position and orientation estimation in GPS-degraded environments.</p>
+						
+						<h4>Technical Implementation:</h4>
+						<ul>
+							<li>Implemented Extended Kalman Filter for nonlinear state estimation with numerical stability</li>
+							<li>Developed adaptive timestep integration using RK4 and Euler methods</li>
+							<li>Performed Allan variance analysis for stochastic sensor noise characterization</li>
+							<li>Built comprehensive simulation environment for algorithm validation</li>
 						</ul>
-					</article>
-				</section>
+						
+						<div class="highlight-metric">
+							🎯 35× Improvement in Position Accuracy Through Adaptive Integration
+						</div>
+						
+						<h4>Mathematical Framework:</h4>
+						<ul>
+							<li>Solved stochastic differential equations for IMU dynamics</li>
+							<li>Implemented covariance propagation for uncertainty quantification</li>
+							<li>Developed measurement update algorithms for multi-sensor fusion</li>
+						</ul>
+						
+						<div class="project-tech">
+							<span class="tech-tag">Python</span>
+							<span class="tech-tag">C++</span>
+							<span class="tech-tag">Kalman Filtering</span>
+							<span class="tech-tag">Numerical Methods</span>
+							<span class="tech-tag">ROS2</span>
+							<span class="tech-tag">MATLAB</span>
+						</div>
+						
+						<div class="project-links">
+							<a href="https://github.com/thiago-pari/gps-imu-fusion" class="project-link">
+								<i class="fab fa-github"></i> View Code
+							</a>
+							<a href="#" class="project-link">
+								<i class="fas fa-chart-line"></i> Performance Analysis
+							</a>
+						</div>
+					</div>
+				</article>
 
-				<section class="posts project-item">
-					<article>
-						<header>
-							<h2><a href="#" onclick="showProjectDetails('R-project-I'); return false;">Econometric Analysis of Income Distribution in R<br /></a></h2>
-						</header>
-						<a href="#" class="image fit" onclick="showProjectDetails('R-project-I')"><img src="images/Salary image.jpeg" alt="" /></a>
-						<p>I analyzed the relationship between weekly earnings, hours worked, sex, race, and age. Analysis involved data cleaning, filtering respondents aged 25-65 from Massachusetts, and handling missing data. Key tasks included calculating the share of workers working more than 0 hours, plotting earnings and wages against hours worked, and exploring wage differences between males and females.</p>
-						<ul class="actions special">
-							<li><a href="#" class="button large" onclick="showProjectDetails('R-project-I'); return false;">View Project</a></li>
+				<!-- Financial Automation Project -->
+				<article class="project-card fade-in">
+					<div class="project-header">
+						<h3 class="project-title">Financial Analysis Automation System</h3>
+						<p class="project-subtitle">Enterprise-Scale Data Processing at Citi</p>
+					</div>
+					<div class="project-content">
+						<p><strong>Overview:</strong> Developed automated financial reporting system processing millions of transactions daily for regulatory compliance.</p>
+						
+						<h4>Impact & Achievements:</h4>
+						<ul>
+							<li>Automated daily workflows with VBA macros, reducing processing time by 50%</li>
+							<li>Implemented pattern recognition algorithms for non-compliance detection</li>
+							<li>Reduced Core-IT non-compliance by 34% through systematic quality assurance</li>
+							<li>Collaborated with risk management and legal teams on data integrity protocols</li>
 						</ul>
-					</article>
-				</section>
+						
+						<div class="highlight-metric">
+							💼 Processed 100,000+ Daily Transactions with 99.9% Accuracy
+						</div>
+						
+						<div class="project-tech">
+							<span class="tech-tag">Excel VBA</span>
+							<span class="tech-tag">SQL</span>
+							<span class="tech-tag">Python</span>
+							<span class="tech-tag">Data Analysis</span>
+							<span class="tech-tag">Automation</span>
+						</div>
+						
+						<div class="project-links">
+							<a href="#" class="project-link">
+								<i class="fas fa-shield-alt"></i> Enterprise Project (NDA)
+							</a>
+						</div>
+					</div>
+				</article>
 			</section>
 
-			<!-- Project Details Section -->
-			<section id="spotify-project" style="display:none;">
+			<!-- Skills Section -->
+			<section class="skills-section" id="skills">
 				<header class="major">
-					<h2>Spotify Data Cleaning & Analysis</h2>
-					<p>Data cleaning and analysis using Python. I performed comprehensive data preprocessing, exploratory data analysis, and applied various machine learning techniques, including linear regression, polynomial regression, and principal component analysis (PCA), to uncover insights into song popularity and feature correlations. This project demonstrates my proficiency in data science and my ability to extract meaningful conclusions from complex datasets.</p>
+					<h2>Technical Expertise</h2>
 				</header>
-				<div id="project-details">
-					<nav>
-						<ul class="tabs">
-							<li class="active"><a href="#" onclick="showTab('spotify-summary'); return false;">Summary</a></li>
-							<li><a href="#" onclick="showTab('spotify-data-description'); return false;">Data Description</a></li>
-						</ul>
-					</nav>
-					<div class="tab-content">
-						<div id="spotify-summary" class="tab" style="display:block;">
-							<iframe src="DS Project.pdf" style="width:100%; height:1000px;" frameborder="0"></iframe>
-							<ul class="button-group">
-								<a href="DS Project.py" class="button" download>Download Code</a>
-								<a href="spotify52kData.csv" class="button" download>Download Data Set</a>
-							</ul>								
+				<div class="skills-grid">
+					<div class="skill-category">
+						<h3>🤖 Robotics & Control</h3>
+						<div class="skill-item">
+							<span>ROS2 & Gazebo</span>
+							<div class="skill-bar">
+								<div class="skill-progress" style="width: 85%;"></div>
+							</div>
 						</div>
-						<div id="spotify-data-description" class="tab" style="display:none;">
-							<iframe src="Data Description.pdf" style="width:100%; height:1000px;" frameborder="0"></iframe>
-							<ul class="button-group">
-								<a href="DS Project.py" class="button" download>Download Code</a>
-								<a href="spotify52kData.csv" class="button" download>Download Data Set</a>
-							</ul>								
+						<div class="skill-item">
+							<span>Control Systems (PID, LQR)</span>
+							<div class="skill-bar">
+								<div class="skill-progress" style="width: 90%;"></div>
+							</div>
+						</div>
+						<div class="skill-item">
+							<span>Kinematics & Dynamics</span>
+							<div class="skill-bar">
+								<div class="skill-progress" style="width: 88%;"></div>
+							</div>
+						</div>
+						<div class="skill-item">
+							<span>Path Planning</span>
+							<div class="skill-bar">
+								<div class="skill-progress" style="width: 75%;"></div>
+							</div>
+						</div>
+					</div>
+
+					<div class="skill-category">
+						<h3>💻 Programming</h3>
+						<div class="skill-item">
+							<span>C++</span>
+							<div class="skill-bar">
+								<div class="skill-progress" style="width: 85%;"></div>
+							</div>
+						</div>
+						<div class="skill-item">
+							<span>Python</span>
+							<div class="skill-bar">
+								<div class="skill-progress" style="width: 90%;"></div>
+							</div>
+						</div>
+						<div class="skill-item">
+							<span>MATLAB/Simulink</span>
+							<div class="skill-bar">
+								<div class="skill-progress" style="width: 88%;"></div>
+							</div>
+						</div>
+						<div class="skill-item">
+							<span>Git & Linux</span>
+							<div class="skill-bar">
+								<div class="skill-progress" style="width: 82%;"></div>
+							</div>
+						</div>
+					</div>
+
+					<div class="skill-category">
+						<h3>📊 Scientific Computing</h3>
+						<div class="skill-item">
+							<span>Numerical Methods</span>
+							<div class="skill-bar">
+								<div class="skill-progress" style="width: 92%;"></div>
+							</div>
+						</div>
+						<div class="skill-item">
+							<span>Linear Algebra</span>
+							<div class="skill-bar">
+								<div class="skill-progress" style="width: 95%;"></div>
+							</div>
+						</div>
+						<div class="skill-item">
+							<span>Differential Equations</span>
+							<div class="skill-bar">
+								<div class="skill-progress" style="width: 90%;"></div>
+							</div>
+						</div>
+						<div class="skill-item">
+							<span>State Estimation</span>
+							<div class="skill-bar">
+								<div class="skill-progress" style="width: 87%;"></div>
+							</div>
+						</div>
+					</div>
+
+					<div class="skill-category">
+						<h3>🔧 Design & Simulation</h3>
+						<div class="skill-item">
+							<span>SolidWorks</span>
+							<div class="skill-bar">
+								<div class="skill-progress" style="width: 80%;"></div>
+							</div>
+						</div>
+						<div class="skill-item">
+							<span>Fusion 360</span>
+							<div class="skill-bar">
+								<div class="skill-progress" style="width: 75%;"></div>
+							</div>
+						</div>
+						<div class="skill-item">
+							<span>Physics Simulation</span>
+							<div class="skill-bar">
+								<div class="skill-progress" style="width: 85%;"></div>
+							</div>
+						</div>
+						<div class="skill-item">
+							<span>Sensor Fusion</span>
+							<div class="skill-bar">
+								<div class="skill-progress" style="width: 88%;"></div>
+							</div>
 						</div>
 					</div>
 				</div>
 			</section>
-			<section id="R-project" style="display:none;">
+
+			<!-- Experience Section -->
+			<section id="experience" style="padding: 4rem 2rem; background: #f9f9f9;">
 				<header class="major">
-					<h2>Econometric Analysis of Labor Force Participation and Teaching Evaluations in R</h2>
-					<p>This project focuses on the labor force participation of married women. Using the MROZ dataset, I employed linear, Probit, and Logit models to estimate labor force participation based on covariates such as income, education, experience, age, and presence of children. Additionally, I predicted labor force participation probabilities and examined the effects of different factors on these probabilities.</p>
+					<h2>Professional Experience</h2>
 				</header>
-				<div id="project-details">
-					<nav>
-						<ul class="tabs">
-							<li class="active"><a href="#" onclick="showTab('r-summary'); return false;">Summary</a></li>
-							<li><a href="#" onclick="showTab('MROZ-data-description'); return false;">Mroz Description</a></li>
-							<li><a href="#" onclick="showTab('Teaching-data-description'); return false;">Teaching Data Description</a></li>
+				
+				<div style="max-width: 900px; margin: 0 auto;">
+					<div style="margin-bottom: 3rem;">
+						<h3>Summer Financial Analyst</h3>
+						<p><strong>Citi - New York, NY</strong> | June 2024 - August 2024</p>
+						<ul>
+							<li>Automated reporting workflows with VBA, achieving 50% time reduction</li>
+							<li>Analyzed large datasets for compliance patterns using statistical methods</li>
+							<li>Reduced non-compliance by 34% through systematic quality assurance</li>
 						</ul>
-					</nav>
-					<div class="tab-content">
-						<div id="r-summary" class="tab" style="display:block;">
-							<iframe src="Econometrics Project II/Econometrics_II_Github-2.pdf" style="width:100%; height:1000px;" frameborder="0"></iframe>
-							<ul class="button-group">
-								<a href="Econometrics Project II/Econometrics Project II.R" class="button" download>Download Code</a>
-								<a href="Econometrics Project II/mroz.dta" class="button" download>Download MROZ Set</a>
-								<a href="Econometrics Project II/TeachingRatings.csv" class="button" download>Download Teaching Ratings Data Set</a>
-							</ul>								
-						</div>
-						<div id="MROZ-data-description" class="tab" style="display:none;">
-							<iframe src="Econometrics Project II/MROZ Description.txt" style="width:100%; height:1000px;" frameborder="0"></iframe>
-							<ul class="button-group">
-								<a href="Econometrics Project II/Econometrics Project II.R" class="button" download>Download Code</a>
-								<a href="Econometrics Project II/mroz.dta" class="button" download>Download MROZ Set</a>
-								<a href="Econometrics Project II/TeachingRatings.csv" class="button" download>Download Teaching Ratings Data Set</a>
-							</ul>
-						</div>
-						<div id="Teaching-data-description" class="tab" style="display:none;">
-							<iframe src="Econometrics Project II/TeachingRatings_Description.pdf" style="width:100%; height:1000px;" frameborder="0"></iframe>
-							<ul class="button-group">
-								<a href="Econometrics Project II/Econometrics Project II.R" class="button" download>Download Code</a>
-								<a href="Econometrics Project II/mroz.dta" class="button" download>Download MROZ Set</a>
-								<a href="Econometrics Project II/TeachingRatings.csv" class="button" download>Download Teaching Ratings Data Set</a>
-							</ul>
-						</div>
+					</div>
+					
+					<div>
+						<h3>Central Office Intern</h3>
+						<p><strong>New York University - New York, NY</strong> | January 2023 - May 2024</p>
+						<ul>
+							<li>Managed database operations for 100,000+ entries across multiple systems</li>
+							<li>Developed efficient workflows improving service quality for 10,000+ students</li>
+							<li>Ensured data accuracy and system reliability through automated validation</li>
+						</ul>
 					</div>
 				</div>
 			</section>
 
-			<section id="R-project-I" style="display:none;">
-				<header class="major">
-					<h2>Econometric Analysis of Income Distribution in R</h2>
-					<p>I analyzed the relationship between weekly earnings, hours worked, sex, race, and age. Analysis involved data cleaning, filtering respondents aged 25-65 from Massachusetts, and handling missing data. Key tasks included calculating the share of workers working more than 0 hours, plotting earnings and wages against hours worked, and exploring wage differences between males and females.</p>
-				</header>
-				<div id="project-details">
-					<nav>
-						<ul class="tabs">
-							<li class="active"><a href="#" onclick="showTab('r-i-summary'); return false;">Summary</a></li>
-						</ul>
-					</nav>
-					<div class="tab-content">
-						<div id="r-i-summary" class="tab" style="display:block;">
-							<iframe src="Econometrics Project I/Econometrics_I_Github.pdf" style="width:100%; height:1000px;" frameborder="0"></iframe>
-							<ul class="button-group">
-								<a href="Econometrics Project I/Econometrics Project.R" class="button" download>Download Code</a>
-								<a href="Econometrics Project I/morg16.zip" class="button" download>Download Data Set</a>
-							</ul>								
-						</div>
+			<!-- Contact Section -->
+			<section class="contact-section">
+				<h2>Let's Connect</h2>
+				<p>I'm always interested in discussing robotics, control systems, and innovative engineering solutions.</p>
+				<div class="contact-grid">
+					<div class="contact-item">
+						<i class="fas fa-envelope"></i>
+						<a href="mailto:parimaquera.t@northeastern.edu">parimaquera.t@northeastern.edu</a>
+					</div>
+					<div class="contact-item">
+						<i class="fab fa-linkedin"></i>
+						<a href="https://www.linkedin.com/in/thiago-pari/">LinkedIn</a>
+					</div>
+					<div class="contact-item">
+						<i class="fab fa-github"></i>
+						<a href="https://github.com/thiago-pari">GitHub</a>
+					</div>
+					<div class="contact-item">
+						<i class="fas fa-phone"></i>
+						<a href="tel:+13474090333">+1 (347) 409-0333</a>
 					</div>
 				</div>
+				<div style="margin-top: 2rem;">
+					<a href="Pari Resume.pdf" class="button primary" download>Download Resume</a>
+				</div>
 			</section>
+		</div>
 
-			<section class="split contact">
-				<section class="alt">
-					<h3>Location</h3>
-					<p>Brooklyn, NY 11201</p>
-				</section>
-				<section>
-					<h3>Phone</h3>
-					<p>(347) 409-0333</p>
-				</section>
-				<section>
-					<h3>Email</h3>
-					<p>tp2330@nyu.edu</p>
-				</section>
-				<section>
-					<h3>Social</h3>
-					<ul class="icons alt">
-						<li><a href="https://www.linkedin.com/in/thiago-pari/" class="icon brands alt fa-linkedin"><span class="label">LinkedIn</span></a></li>
-						<li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
-					</ul>
-				</section>
-			</section>
+		<!-- Footer -->
+		<footer id="footer" style="display: none;">
+			<!-- Hidden to reduce clutter - contact info is in the contact section -->
 		</footer>
 
 		<!-- Copyright -->
 		<div id="copyright">
-			<ul><li>&copy; Untitled</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+			<ul><li>&copy; 2024 Thiago Pari</li><li>Robotics Engineer</li></ul>
 		</div>
 
 	</div>
@@ -274,35 +766,71 @@
 	<script src="assets/js/breakpoints.min.js"></script>
 	<script src="assets/js/util.js"></script>
 	<script src="assets/js/main.js"></script>
+	
+	<!-- Custom Scripts -->
 	<script>
-		function showSection(section) {
-			document.getElementById('projects').style.display = 'none';
-			document.getElementById('spotify-project').style.display = 'none';
-			document.getElementById('R-project').style.display = 'none';
-			document.getElementById('R-project-I').style.display = 'none';
-			document.getElementById(section).style.display = 'block';
-			document.querySelectorAll('#nav ul.links li').forEach(li => li.classList.remove('active'));
-			document.querySelector(`#nav ul.links li a[onclick*='${section}']`).parentElement.classList.add('active');
+		// Smooth scrolling for navigation
+		document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+			anchor.addEventListener('click', function (e) {
+				e.preventDefault();
+				document.querySelector(this.getAttribute('href')).scrollIntoView({
+					behavior: 'smooth'
+				});
+			});
+		});
 
-			if (section === 'projects') {
-				// Force re-layout to ensure flexbox properties are applied correctly
-				let projectsContainer = document.querySelector('.projects-container');
-				projectsContainer.style.display = 'none';
-				setTimeout(() => {
-					projectsContainer.style.display = 'flex';
-				}, 0);
+		// Animate skill bars on scroll
+		const observerOptions = {
+			threshold: 0.5,
+			rootMargin: '0px 0px -100px 0px'
+		};
+
+		const observer = new IntersectionObserver(function(entries) {
+			entries.forEach(entry => {
+				if (entry.isIntersecting) {
+					entry.target.style.animation = 'fadeInUp 1s ease forwards';
+					
+					// Animate skill bars
+					const skillBars = entry.target.querySelectorAll('.skill-progress');
+					skillBars.forEach(bar => {
+						const width = bar.style.width;
+						bar.style.width = '0';
+						setTimeout(() => {
+							bar.style.width = width;
+						}, 100);
+					});
+				}
+			});
+		}, observerOptions);
+
+		// Observe elements
+		document.querySelectorAll('.project-card, .skill-category').forEach(el => {
+			observer.observe(el);
+		});
+
+		// Dynamic typing effect for current work
+		const currentWorkText = document.querySelector('.current-work p');
+		if (currentWorkText) {
+			const text = currentWorkText.innerText;
+			currentWorkText.innerText = '';
+			let index = 0;
+			
+			function typeWriter() {
+				if (index < text.length) {
+					currentWorkText.innerText += text.charAt(index);
+					index++;
+					setTimeout(typeWriter, 30);
+				}
 			}
-		}
-
-		function showProjectDetails(project) {
-			showSection(project);
-		}
-
-		function showTab(tab) {
-			document.querySelectorAll('.tab').forEach(tabContent => tabContent.style.display = 'none');
-			document.getElementById(tab).style.display = 'block';
-			document.querySelectorAll('.tabs li').forEach(tabLink => tabLink.classList.remove('active'));
-			document.querySelector(`.tabs li a[onclick*='${tab}']`).parentElement.classList.add('active');
+			
+			// Start typing when section is visible
+			const workObserver = new IntersectionObserver(function(entries) {
+				if (entries[0].isIntersecting) {
+					typeWriter();
+					workObserver.disconnect();
+				}
+			});
+			workObserver.observe(document.querySelector('.current-work'));
 		}
 	</script>
 </body>
