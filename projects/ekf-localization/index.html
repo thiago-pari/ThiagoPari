@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Sensor Fusion Localization - Thiago Pari</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #ffffff;
+        }
+
+        /* Header - same as main site */
+        header {
+            background: #fff;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #222;
+            text-decoration: none;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        nav a {
+            color: #555;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #2196F3;
+        }
+
+        /* Project Content */
+        .project-header {
+            max-width: 900px;
+            margin: 3rem auto 2rem;
+            padding: 0 2rem;
+        }
+
+        .project-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #222;
+            margin-bottom: 1rem;
+        }
+
+        .project-meta {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .meta-tag {
+            background: #e3f2fd;
+            color: #1976d2;
+            padding: 0.4rem 1rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .project-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem 4rem;
+        }
+
+        .project-content h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #222;
+            margin: 3rem 0 1rem;
+        }
+
+        .project-content h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #333;
+            margin: 2rem 0 1rem;
+        }
+
+        .project-content p {
+            color: #555;
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .project-content ul {
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-content li {
+            color: #555;
+            margin-bottom: 0.5rem;
+            line-height: 1.8;
+        }
+
+        .project-image {
+            width: 100%;
+            margin: 2rem 0;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: #f5f5f5;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #2196F3;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .github-link {
+            display: inline-block;
+            background: #2196F3;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            margin: 2rem 0;
+            transition: background 0.3s;
+        }
+
+        .github-link:hover {
+            background: #1976d2;
+        }
+
+        code {
+            background: #f5f5f5;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        .highlight-box {
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+
+        /* Footer */
+        footer {
+            background: #f5f5f5;
+            padding: 2rem 0;
+            margin-top: 4rem;
+            border-top: 1px solid #e0e0e0;
+            text-align: center;
+            color: #666;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+            }
+
+            .project-header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <a href="../../index.html" class="logo">Thiago Pari</a>
+            <nav>
+                <ul>
+                    <li><a href="../../index.html#projects">Projects</a></li>
+                    <li><a href="../../index.html#about">About</a></li>
+                    <li><a href="../../index.html#contact">Contact</a></li>
+                    <li><a href="../../Pari Resume.pdf" target="_blank">Resume</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Project Header -->
+    <div class="project-header">
+        <h1>Multi-Sensor Fusion Localization for Mobile Robotics</h1>
+        <div class="project-meta">
+            <span class="meta-tag">ROS2 Jazzy</span>
+            <span class="meta-tag">Python</span>
+            <span class="meta-tag">EKF/UKF</span>
+            <span class="meta-tag">LiDAR ICP</span>
+            <span class="meta-tag">December 2024</span>
+        </div>
+    </div>
+
+    <!-- Project Content -->
+    <div class="project-content">
+        
+        <img src="../../images/ekf-sensor-fusion.png" alt="EKF Sensor Fusion Visualization" class="project-image">
+
+        <h2>Overview</h2>
+        <p>
+            Real-time sensor fusion system combining wheel odometry, IMU, simulated GPS, and LiDAR scan matching through Extended Kalman Filtering for robust mobile robot localization. This project demonstrates advanced state estimation techniques achieving <strong>28.8% error reduction</strong> compared to dead reckoning baseline.
+        </p>
+
+        <div class="highlight-box">
+            <strong>Key Achievement:</strong> Implemented EKF and UKF algorithms from scratch in Python, processing sensor data at 50Hz with proper covariance tracking and uncertainty quantification throughout the entire estimation pipeline.
+        </div>
+
+        <h2>Performance Metrics</h2>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-value">1.584m</div>
+                <div class="stat-label">RMS Position Error</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">28.8%</div>
+                <div class="stat-label">Improvement over Dead Reckoning</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">50 Hz</div>
+                <div class="stat-label">Real-Time Processing</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">96%</div>
+                <div class="stat-label">Scan Match Success Rate</div>
+            </div>
+        </div>
+
+        <h2>Technical Implementation</h2>
+        
+        <h3>Extended Kalman Filter (EKF)</h3>
+        <p>
+            The EKF implements full prediction and update cycles with proper Jacobian linearization for non-linear motion models. The prediction step uses differential drive kinematics with mid-point integration to estimate the next state:
+        </p>
+        <p>
+            State vector: <code>x = [x, y, θ]ᵀ</code> where <code>(x, y)</code> is position in meters and <code>θ</code> is heading in radians.
+        </p>
+        <p>
+            Motion model propagates state using wheel velocities while computing the Jacobian matrix for covariance updates. The update step fuses multiple sensor measurements (GPS position, IMU heading, LiDAR scan matching) using the standard Kalman gain formulation with properly tuned measurement noise matrices.
+        </p>
+
+        <h3>Robust LiDAR Scan Matching</h3>
+        <p>
+            Implemented multi-resolution trimmed ICP (Iterative Closest Point) algorithm achieving exceptional accuracy. The pipeline includes:
+        </p>
+        <ul>
+            <li><strong>Multi-resolution alignment:</strong> Coarse-to-fine approach with voxel downsampling at [0.1m, 0.05m, 0.02m] scales for computational efficiency</li>
+            <li><strong>Outlier rejection:</strong> Trimmed ICP keeps only closest 80% of point correspondences, dramatically improving robustness to dynamic objects</li>
+            <li><strong>Quality validation:</strong> Each scan match includes fitness score and RMSE metrics to determine measurement reliability</li>
+            <li><strong>Adaptive covariance:</strong> Measurement noise scales based on correspondence quality, fitness, and RMSE</li>
+        </ul>
+
+        <h3>Unscented Kalman Filter (UKF) Comparison</h3>
+        <p>
+            Parallel UKF implementation using sigma point transforms provides comparison baseline for handling non-linearities. For this application's weakly non-linear motion model, EKF and UKF performance converged to nearly identical results, validating the linearization approach while demonstrating mastery of both filtering techniques.
+        </p>
+
+        <h2>System Architecture</h2>
+        <p>
+            The system runs as a ROS2 node orchestrating multiple asynchronous sensor callbacks. Key components include:
+        </p>
+        <ul>
+            <li><strong>Motion Prediction:</strong> 50Hz updates using wheel odometry velocities with full covariance propagation</li>
+            <li><strong>IMU Updates:</strong> 50Hz heading corrections with 1° accuracy improving orientation estimates</li>
+            <li><strong>GPS Updates:</strong> 1Hz position corrections with ~30cm accuracy as absolute position reference</li>
+            <li><strong>Scan Matching:</strong> 6Hz LiDAR-based position updates with 2.3cm average RMSE when successful</li>
+            <li><strong>Dead Reckoning Baseline:</strong> Pure odometry integration without corrections for performance comparison</li>
+        </ul>
+
+        <h2>Robustness Features</h2>
+        
+        <h3>GPS Outage Handling</h3>
+        <p>
+            The filter gracefully handles GPS signal loss through sensor dropout simulation. During 15-second GPS outages, the system continues operating with IMU-only updates, maintaining reasonable accuracy through proper uncertainty tracking. Covariance ellipse visualization clearly shows growing uncertainty during outages and convergence after GPS reacquisition.
+        </p>
+
+        <h3>Real-Time Visualization</h3>
+        <p>
+            RViz integration provides live visualization of estimated trajectory, uncertainty ellipses, and comparison against ground truth. The uncertainty visualization dynamically updates based on filter confidence, expanding between GPS updates and contracting after measurement corrections.
+        </p>
+
+        <h2>Key Learnings</h2>
+        <ul>
+            <li>Proper covariance tuning is critical - process noise Q and measurement noise R matrices directly impact filter responsiveness vs. stability trade-off</li>
+            <li>Angle normalization to [-π, π] is essential to prevent filter divergence due to angle wrapping discontinuities</li>
+            <li>Multi-rate sensor fusion requires careful timestamp handling and proper update sequencing to maintain consistency</li>
+            <li>Scan matching quality metrics enable adaptive measurement weighting, significantly improving robustness to poor ICP alignments</li>
+        </ul>
+
+        <h2>Hardware Platform</h2>
+        <p>
+            TurtleBot3 Waffle robot equipped with:
+        </p>
+        <ul>
+            <li>Wheel encoders providing differential drive odometry</li>
+            <li>9-DOF IMU for orientation measurements</li>
+            <li>360° LiDAR for scan matching (simulated in Gazebo)</li>
+            <li>Simulated GPS providing ground truth position with realistic noise</li>
+        </ul>
+
+        <h2>Future Enhancements</h2>
+        <ul>
+            <li><strong>EKF-SLAM:</strong> Extend to simultaneous localization and mapping with landmark features</li>
+            <li><strong>Hardware Validation:</strong> Deploy to real TurtleBot3 hardware (scheduled January 2025)</li>
+            <li><strong>Visual Odometry:</strong> Integrate camera-based motion estimation for additional redundancy</li>
+            <li><strong>Adaptive Filtering:</strong> Context-aware noise models that adjust based on motion dynamics</li>
+        </ul>
+
+        <a href="https://github.com/thiagopari/ekf-localization" target="_blank" class="github-link">View on GitHub →</a>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2024 Thiago Pari | Built with focus and simplicity</p>
+    </footer>
+
+</body>
+</html>
