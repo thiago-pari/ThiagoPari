@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Balloon Boy: AI-Powered Desktop Assistant - Thiago Pari</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #ffffff;
+        }
+
+        /* Header - same as main site */
+        header {
+            background: #fff;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #222;
+            text-decoration: none;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        nav a {
+            color: #555;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #2196F3;
+        }
+
+        /* Project Content */
+        .project-header {
+            max-width: 900px;
+            margin: 3rem auto 2rem;
+            padding: 0 2rem;
+        }
+
+        .project-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #222;
+            margin-bottom: 1rem;
+        }
+
+        .project-meta {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .meta-tag {
+            background: #e3f2fd;
+            color: #1976d2;
+            padding: 0.4rem 1rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .project-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem 4rem;
+        }
+
+        .project-content h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #222;
+            margin: 3rem 0 1rem;
+        }
+
+        .project-content h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #333;
+            margin: 2rem 0 1rem;
+        }
+
+        .project-content p {
+            color: #555;
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .project-content ul {
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-content li {
+            color: #555;
+            margin-bottom: 0.5rem;
+            line-height: 1.8;
+        }
+
+        .project-image {
+            width: 100%;
+            margin: 2rem 0;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: #f5f5f5;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #2196F3;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .github-link {
+            display: inline-block;
+            background: #2196F3;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            margin: 2rem 0;
+            transition: background 0.3s;
+        }
+
+        .github-link:hover {
+            background: #1976d2;
+        }
+
+        code {
+            background: #f5f5f5;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        .highlight-box {
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .status-complete {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .status-inprogress {
+            background: #fff3e0;
+            color: #ef6c00;
+        }
+
+        /* Footer */
+        footer {
+            background: #f5f5f5;
+            padding: 2rem 0;
+            margin-top: 4rem;
+            border-top: 1px solid #e0e0e0;
+            text-align: center;
+            color: #666;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+            }
+
+            .project-header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <a href="../../index.html" class="logo">Thiago Pari</a>
+            <nav>
+                <ul>
+                    <li><a href="../../index.html#projects">Projects</a></li>
+                    <li><a href="../../index.html#about">About</a></li>
+                    <li><a href="../../index.html#contact">Contact</a></li>
+                    <li><a href="../../Pari Resume.pdf" target="_blank">Resume</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Project Header -->
+    <div class="project-header">
+        <h1>🎈 Balloon Boy: AI-Powered Animatronic Desktop Assistant</h1>
+        <div class="project-meta">
+            <span class="meta-tag">Python</span>
+            <span class="meta-tag">Gemma 2 9B</span>
+            <span class="meta-tag">OpenAI API</span>
+            <span class="meta-tag">ESP32-CAM</span>
+            <span class="meta-tag">LangGraph</span>
+            <span class="meta-tag">December 2025 – Present</span>
+        </div>
+        <div>
+            <span class="status-badge status-complete">✓ AI System Complete</span>
+            <span class="status-badge status-inprogress">⚡ Hardware Assembly Pending</span>
+        </div>
+    </div>
+
+    <!-- Project Content -->
+    <div class="project-content">
+        
+        <!-- Placeholder image - replace when hardware assembled -->
+        <div class="project-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); height: 400px; display: flex; align-items: center; justify-content: center; color: white; font-size: 6rem; flex-direction: column;">
+            <div style="font-size: 8rem;">🎈🤖</div>
+            <div style="font-size: 1.2rem; margin-top: 1rem; opacity: 0.9;">Hardware Arriving January 8, 2026</div>
+        </div>
+
+        <h2>Overview</h2>
+        <p>
+            Autonomous AI-powered desktop assistant that combines mechanical engineering, embedded systems, computer vision, and large language models to create an interactive animatronic companion. The system features <strong>hybrid local/cloud AI architecture</strong> achieving 80% cost reduction through intelligent routing, real-time face tracking for natural eye contact, conversational memory using vector databases, and practical applications including automated resume tailoring from job descriptions.
+        </p>
+
+        <div class="highlight-box">
+            <strong>Key Innovation:</strong> Hybrid LLM deployment strategy routes 80% of queries to local Gemma 2 9B (40 tok/s, free) and 20% to cloud APIs (GPT-4o/Claude) based on complexity analysis, reducing monthly costs from $50-100 to $10-15 while maintaining frontier-model quality for complex reasoning tasks.
+        </div>
+
+        <h2>Performance Metrics</h2>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-value">10</div>
+                <div class="stat-label">Degrees of Freedom</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">40 tok/s</div>
+                <div class="stat-label">Local LLM Speed</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">80%</div>
+                <div class="stat-label">Local Execution Rate</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">~$15/mo</div>
+                <div class="stat-label">Total AI Costs</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">±45°</div>
+                <div class="stat-label">Eye Movement Range</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">~$120</div>
+                <div class="stat-label">Hardware Budget</div>
+            </div>
+        </div>
+
+        <h2>Technical Implementation</h2>
+        
+        <h3>Mechanical Design</h3>
+        <p>
+            The animatronic features a custom dual-axis eye mechanism using spatial four-bar linkages to convert servo rotations into realistic eye movements. Each eye has independent pan and tilt control through a rear-mounted servo configuration designed in Fusion 360.
+        </p>
+        <ul>
+            <li><strong>Linkage geometry:</strong> Optimized four-bar mechanism with 38.7mm and 37.4mm connecting rods achieving symmetric ±45° motion ranges for both axes</li>
+            <li><strong>Servo selection:</strong> MG90S metal-gear servos for eyes (precision), SG90 for jaw (speed), sized for 14-inch scale animatronic</li>
+            <li><strong>Integration:</strong> Custom two-tier electronics mounting tray designed in OpenSCAD, integrated directly into body structure with cable routing channels</li>
+            <li><strong>CAD workflow:</strong> Blender for mesh manipulation → Fusion 360 for precise mechanical design → 3D printing with free university facilities</li>
+        </ul>
+
+        <h3>Embedded Systems Architecture</h3>
+        <p>
+            Multi-controller system distributing computational load across specialized processors with clear communication protocols and proper power distribution:
+        </p>
+        <ul>
+            <li><strong>ESP32-CAM:</strong> Handles video streaming (640x480@30fps), I2S microphone input (INMP441), I2S speaker output (MAX98357A), WiFi communication to laptop</li>
+            <li><strong>Arduino Nano:</strong> I2C master controlling PCA9685 16-channel PWM driver for precise servo positioning with smooth interpolation</li>
+            <li><strong>PCA9685:</strong> Generates PWM signals for 4 servos (2 eyes × 2 axes) with 12-bit resolution enabling fine-grained position control</li>
+            <li><strong>Power system:</strong> 5V 5A supply with XL4015 buck converters, proper voltage regulation, 1000µF decoupling capacitor on servo rails</li>
+            <li><strong>Communication:</strong> WiFi (ESP32 ↔ Laptop), Serial UART (ESP32 ↔ Arduino), I2C (Arduino ↔ PCA9685)</li>
+        </ul>
+
+        <h3>Hybrid AI Architecture</h3>
+        <p>
+            The AI system implements intelligent routing between local and cloud models based on automated complexity scoring, achieving cost optimization without sacrificing quality:
+        </p>
+        <ul>
+            <li><strong>Local LLM:</strong> Gemma 2 9B (Q4 quantized) running on RTX 2000 Blackwell GPU (8GB VRAM) via Ollama, delivering 40-45 tokens/second for simple queries</li>
+            <li><strong>Cloud API:</strong> GPT-4o-mini or Claude Sonnet 4.5 for complex reasoning, code generation, and multi-step tasks requiring frontier-model capabilities</li>
+            <li><strong>Intelligent routing:</strong> Heuristic complexity scoring algorithm analyzing query length, reasoning indicators, multi-step patterns, and code generation requests</li>
+            <li><strong>Fallback mechanism:</strong> Automatic failover to cloud API if local model encounters errors, ensuring robustness</li>
+            <li><strong>Cost tracking:</strong> Real-time statistics showing local vs cloud distribution, actual token usage, and monthly cost projections</li>
+        </ul>
+
+        <h3>Memory & Learning Systems</h3>
+        <p>
+            Dual-memory architecture enables both semantic search through past conversations and structured fact storage:
+        </p>
+        <ul>
+            <li><strong>Episodic memory:</strong> ChromaDB vector database storing conversation embeddings for semantic search (e.g., "What did we discuss about robotics?") with cosine similarity ranking</li>
+            <li><strong>Semantic memory:</strong> SQLite database for structured facts (user profile, preferences, learned information) enabling fast key-value lookups</li>
+            <li><strong>Context injection:</strong> Automatic retrieval of relevant past conversations (top 3-5) and user profile facts prepended to each query for personalized responses</li>
+            <li><strong>Reflexion loop:</strong> Planned learning mechanism storing failures and self-generated reflections to improve future task execution</li>
+        </ul>
+
+        <h3>Agentic Capabilities via Function Calling</h3>
+        <p>
+            Tool integration through OpenAI function calling enables autonomous task execution and information retrieval:
+        </p>
+        <ul>
+            <li><strong>Web search:</strong> DuckDuckGo integration providing real-time information beyond knowledge cutoff (news, weather, current events, movie reviews)</li>
+            <li><strong>Resume tailoring:</strong> Analyzes job descriptions using keyword extraction and relevance scoring, selects 2 most appropriate projects from portfolio, generates LaTeX resume with variant bullet points, compiles to PDF in ~/resumes/ folder</li>
+            <li><strong>File operations:</strong> Permission-tiered system allowing reads from job_descriptions/ and writes only to resumes/ with path traversal protection</li>
+            <li><strong>Calendar management:</strong> (Planned) Google Calendar API integration for event creation, queries, and daily briefings</li>
+        </ul>
+
+        <h2>Computer Vision Integration</h2>
+        
+        <h3>Real-Time Face Tracking</h3>
+        <p>
+            OpenCV-based face detection pipeline processes ESP32-CAM video stream for natural eye contact during conversations:
+        </p>
+        <ul>
+            <li>Haar Cascade classifier detecting faces in 640x480@30fps video stream</li>
+            <li>Face centroid calculation and mapping to servo angle coordinates (-45° to +45°)</li>
+            <li>Exponential smoothing filter (α=0.3) preventing jittery movements and creating natural eye motion</li>
+            <li>Multi-face handling prioritizing largest (closest) face when multiple people detected</li>
+        </ul>
+
+        <h2>Resume Tailoring System</h2>
+        <p>
+            Real-world application demonstrating practical value beyond research demonstration:
+        </p>
+        
+        <h3>Workflow</h3>
+        <ul>
+            <li><strong>Input:</strong> User provides job description (text or file path from ~/job_descriptions/)</li>
+            <li><strong>Analysis:</strong> Keyword extraction and matching against 6 project portfolios with category weighting (mechanical, software, AI, vision, controls)</li>
+            <li><strong>Selection:</strong> Scores each project based on keyword matches, selects top 2, determines bullet point variant (mechanical_focus vs software_focus vs full)</li>
+            <li><strong>Generation:</strong> Populates LaTeX template with selected projects and variants, compiles to PDF using pdflatex</li>
+            <li><strong>Output:</strong> PDF saved to ~/resumes/Resume_CompanyName_Position.pdf in 5-10 seconds</li>
+        </ul>
+
+        <h3>Project Database</h3>
+        <p>
+            System maintains structured database of 6 projects (WALL-E, Bundle Adjustment, EKF Localization, Terrain Classifier, Quadruped Robot, Balloon Boy) with multiple bullet point variants emphasizing different technical aspects based on job requirements.
+        </p>
+
+        <h2>System Integration Challenges</h2>
+        
+        <h3>Architecture Compatibility (ARM64 → x86_64)</h3>
+        <p>
+            Initial development on M4 MacBook Pro (ARM64 architecture via Parallels) required careful migration strategy to production ThinkPad P1 Gen 8 (x86_64). Solution involved source-only transfer with complete rebuild of all compiled components (ROS2 packages, Python C extensions, CUDA libraries) on target architecture, demonstrating proper separation between architecture-agnostic source code and platform-specific binaries.
+        </p>
+
+        <h3>VRAM Constraints and Model Selection</h3>
+        <p>
+            RTX 2000 Blackwell GPU's 8GB VRAM limitation prevented running desired 14B+ models (requiring 10-12GB minimum). Analysis revealed quality plateau between 8B-9B models with meaningful improvements only appearing at 14B+. Hybrid strategy combining local 9B model with cloud API provided optimal quality-cost balance compared to upgrading hardware ($600+ for 12GB GPU).
+        </p>
+
+        <h3>Multi-Controller Communication</h3>
+        <p>
+            Coordinating three microcontrollers (ESP32-CAM, Arduino Nano, PCA9685) required careful protocol selection and timing analysis. WiFi streaming for video/audio, Serial UART for coordinate data (with proper voltage level conversion 3.3V ↔ 5V), and I2C for servo control with pull-up resistors and proper grounding architecture.
+        </p>
+
+        <h2>Key Learnings</h2>
+        <ul>
+            <li><strong>Hybrid deployment optimization:</strong> Local LLM execution achieves 80% coverage for routine queries, with cloud APIs handling remaining 20% of complex tasks - demonstrates that "bigger model" isn't always the answer when architecture can compensate</li>
+            <li><strong>Production AI safety:</strong> Permission-tiered file access (read from specific dirs, write only to sandboxed output) and path traversal validation prevent unintended system modifications while maintaining useful functionality</li>
+            <li><strong>Mechanical-software co-design:</strong> CAD integration of mounting features directly into robot body (vs separate plates) creates cleaner designs but requires understanding both domains simultaneously</li>
+            <li><strong>Function calling best practices:</strong> Descriptive tool definitions with clear parameter schemas enable reliable autonomous tool selection by LLMs, while proper error handling ensures graceful degradation</li>
+            <li><strong>Cross-architecture development:</strong> Building on ARM64 for deployment on x86_64 requires disciplined separation of source code from compiled artifacts - proper Git hygiene and requirements.txt files enable smooth transitions</li>
+        </ul>
+
+        <h2>Real-World Impact</h2>
+        <ul>
+            <li><strong>Active use:</strong> Resume tailoring system used for actual internship applications, generating tailored PDFs in seconds vs 30+ minutes manual editing</li>
+            <li><strong>Cost efficiency:</strong> Demonstrated that thoughtful architecture (local/cloud hybrid) achieves similar quality to all-cloud at 70-80% cost reduction</li>
+            <li><strong>Learning platform:</strong> Serves as testbed for agentic AI concepts (tool use, memory systems, autonomous decision-making) with immediate practical feedback</li>
+        </ul>
+
+        <h2>Hardware Platform</h2>
+        <p>
+            14-inch scale animatronic with components arriving January 8, 2026:
+        </p>
+        <ul>
+            <li><strong>Servos:</strong> 3× MG90S metal-gear (eyes), 1× SG90 (jaw) with Corona DS-843MG available for upgrades</li>
+            <li><strong>Vision:</strong> ESP32-CAM module (OV2640 camera, 640x480@30fps) with face tracking</li>
+            <li><strong>Audio:</strong> INMP441 I2S MEMS microphone, MAX98357A I2S amplifier, 2-inch 4Ω speaker</li>
+            <li><strong>Control:</strong> Arduino Nano + PCA9685 16-channel PWM driver (I2C communication)</li>
+            <li><strong>Processing:</strong> ThinkPad P1 Gen 8 (Intel Core Ultra i7, RTX 2000 Blackwell 8GB) running Ubuntu 24.04</li>
+        </ul>
+
+        <h2>Development Timeline</h2>
+        <ul>
+            <li><strong>December 2025:</strong> Mechanical CAD design complete (Fusion 360, Blender), electronics architecture designed (KiCad schematics), AI software system implemented and tested</li>
+            <li><strong>January 8, 2026:</strong> Hardware components arrive, 3D printing begins</li>
+            <li><strong>January 15, 2026 (Target):</strong> Mechanical assembly complete, electronics integration</li>
+            <li><strong>January 22, 2026 (Target):</strong> Software-hardware integration, face tracking operational, demo video</li>
+            <li><strong>February 2026:</strong> Voice interface (Whisper STT + TTS), calendar integration, final polish</li>
+        </ul>
+
+        <h2>Technology Stack</h2>
+        
+        <h3>AI & Machine Learning</h3>
+        <p>
+            <code>Gemma 2 9B</code> (local via Ollama), <code>GPT-4o-mini</code> (OpenAI API), <code>Claude Sonnet 4.5</code> (Anthropic API), <code>LangGraph</code> (orchestration), <code>LangChain</code>, <code>ChromaDB</code> (vector memory), <code>Whisper</code> (speech-to-text)
+        </p>
+
+        <h3>Computer Vision</h3>
+        <p>
+            <code>OpenCV</code> (face detection), Haar Cascades, Real-time tracking algorithms
+        </p>
+
+        <h3>Embedded Systems</h3>
+        <p>
+            <code>ESP32-CAM</code>, <code>Arduino</code>, <code>PCA9685</code> (I2C PWM driver), <code>INMP441</code> (I2S mic), <code>MAX98357A</code> (I2S amp), Serial UART, I2C protocol
+        </p>
+
+        <h3>Mechanical & CAD</h3>
+        <p>
+            <code>Fusion 360</code> (primary CAD), <code>Blender</code> (mesh manipulation), <code>OpenSCAD</code> (parametric design), <code>KiCad</code> (circuit schematics)
+        </p>
+
+        <h3>Software Development</h3>
+        <p>
+            <code>Python 3.12</code>, <code>C++</code> (planned Arduino firmware), <code>SQLite</code>, <code>LaTeX</code>, <code>Git</code>, Ubuntu 24.04
+        </p>
+
+        <h2>Future Enhancements</h2>
+        <ul>
+            <li><strong>Voice interaction:</strong> Full speech-to-text (Whisper) and text-to-speech pipeline with jaw synchronization to spoken words</li>
+            <li><strong>Calendar integration:</strong> Google Calendar API for event management, daily briefings, and proactive reminders</li>
+            <li><strong>DPO fine-tuning:</strong> Periodic model fine-tuning on collected user preferences using Direct Preference Optimization</li>
+            <li><strong>MCP tool discovery:</strong> Model Context Protocol integration enabling autonomous discovery and installation of new capabilities with human approval gates</li>
+            <li><strong>Home automation:</strong> Integration with Home Assistant for smart device control</li>
+            <li><strong>Physics simulation:</strong> Isaac Sim validation of mechanical design before hardware assembly</li>
+        </ul>
+
+        <a href="https://github.com/thiagopari/balloon-boy" target="_blank" class="github-link">View on GitHub →</a>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2024 Thiago Pari | Built with focus and simplicity</p>
+    </footer>
+
+</body>
+</html>

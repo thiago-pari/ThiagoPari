@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMU-Based Terrain Classification - Thiago Pari</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #ffffff;
+        }
+
+        /* Header - same as main site */
+        header {
+            background: #fff;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #222;
+            text-decoration: none;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        nav a {
+            color: #555;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #2196F3;
+        }
+
+        /* Project Content */
+        .project-header {
+            max-width: 900px;
+            margin: 3rem auto 2rem;
+            padding: 0 2rem;
+        }
+
+        .project-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #222;
+            margin-bottom: 1rem;
+        }
+
+        .project-meta {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .meta-tag {
+            background: #e3f2fd;
+            color: #1976d2;
+            padding: 0.4rem 1rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .project-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem 4rem;
+        }
+
+        .project-content h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #222;
+            margin: 3rem 0 1rem;
+        }
+
+        .project-content h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #333;
+            margin: 2rem 0 1rem;
+        }
+
+        .project-content p {
+            color: #555;
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .project-content ul {
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-content li {
+            color: #555;
+            margin-bottom: 0.5rem;
+            line-height: 1.8;
+        }
+
+        .project-image {
+            width: 100%;
+            margin: 2rem 0;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: #f5f5f5;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #2196F3;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .github-link {
+            display: inline-block;
+            background: #2196F3;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            margin: 2rem 0;
+            transition: background 0.3s;
+        }
+
+        .github-link:hover {
+            background: #1976d2;
+        }
+
+        code {
+            background: #f5f5f5;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        .highlight-box {
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+
+        /* Footer */
+        footer {
+            background: #f5f5f5;
+            padding: 2rem 0;
+            margin-top: 4rem;
+            border-top: 1px solid #e0e0e0;
+            text-align: center;
+            color: #666;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+            }
+
+            .project-header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <a href="../../index.html" class="logo">Thiago Pari</a>
+            <nav>
+                <ul>
+                    <li><a href="../../index.html#projects">Projects</a></li>
+                    <li><a href="../../index.html#about">About</a></li>
+                    <li><a href="../../index.html#contact">Contact</a></li>
+                    <li><a href="../../Pari Resume.pdf" target="_blank">Resume</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Project Header -->
+    <div class="project-header">
+        <h1>IMU-Based Terrain Classification</h1>
+        <div class="project-meta">
+            <span class="meta-tag">ROS2 Jazzy</span>
+            <span class="meta-tag">Python</span>
+            <span class="meta-tag">SVM</span>
+            <span class="meta-tag">LDA</span>
+            <span class="meta-tag">December 2024</span>
+        </div>
+    </div>
+
+    <!-- Project Content -->
+    <div class="project-content">
+        
+        <img src="../../images/terrain-classification.png" alt="Terrain Classification System" class="project-image">
+
+        <h2>Overview</h2>
+        <p>
+            Real-time machine learning system that classifies terrain types (asphalt, grass, gravel, tile) from IMU sensor vibration patterns. Enables mobile robots to adapt navigation strategies based on surface conditions, improving safety and efficiency in autonomous operations without relying on vision-based sensing.
+        </p>
+
+        <div class="highlight-box">
+            <strong>Key Achievement:</strong> Implemented complete ML pipeline from feature extraction to real-time ROS2 integration, achieving 100% classification accuracy with perfect class separation in reduced dimensional space.
+        </div>
+
+        <h2>Performance Metrics</h2>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-value">100%</div>
+                <div class="stat-label">Test Accuracy</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">50 Hz</div>
+                <div class="stat-label">Real-Time Processing</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">100D → 3D</div>
+                <div class="stat-label">Dimensionality Reduction</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">4 Classes</div>
+                <div class="stat-label">Terrain Types</div>
+            </div>
+        </div>
+
+        <h2>Technical Implementation</h2>
+        
+        <h3>Feature Extraction Pipeline</h3>
+        <p>
+            Comprehensive signal processing of 6-axis IMU data (3-axis accelerometer + 3-axis gyroscope) using 2-second sliding windows sampled at 50Hz. Each window generates 100 features capturing terrain-specific vibration signatures:
+        </p>
+        <ul>
+            <li><strong>Time Domain (60 features):</strong> Statistical measures including mean, standard deviation, variance, skewness, kurtosis, RMS, peak-to-peak amplitude, and zero-crossing rate for each sensor axis</li>
+            <li><strong>Frequency Domain (40 features):</strong> FFT-based spectral analysis including total energy, dominant frequency, spectral entropy, and power distribution across frequency bands (0-5Hz, 5-10Hz, 10-20Hz)</li>
+            <li><strong>Cross-Axis Features:</strong> Correlation coefficients between sensor axes capturing coupled motion patterns</li>
+        </ul>
+        <p>
+            This rich feature representation captures unique vibration characteristics - gravel produces high-frequency, high-amplitude variations while asphalt generates lower-amplitude, smoother signals.
+        </p>
+
+        <h3>Machine Learning Architecture</h3>
+        <p>
+            Three-stage classification pipeline optimized for real-time performance:
+        </p>
+
+        <p><strong>Linear Discriminant Analysis (LDA):</strong></p>
+        <p>
+            Projects 100-dimensional feature space into optimal 3D discriminant space by maximizing between-class variance while minimizing within-class variance. Achieves perfect linear separability of all four terrain classes, dramatically reducing computational complexity while maintaining 100% accuracy.
+        </p>
+
+        <p><strong>Support Vector Machine (SVM):</strong></p>
+        <p>
+            RBF kernel SVM classifier operating in 3D LDA space defines optimal decision boundaries between terrain classes. Hyperparameters (regularization C and kernel coefficient gamma) optimized via grid search with 5-fold cross-validation.
+        </p>
+
+        <h3>Model Validation</h3>
+        <ul>
+            <li>100% accuracy across all cross-validation folds</li>
+            <li>Zero misclassifications on held-out test set</li>
+            <li>Perfect confusion matrix diagonal (no off-diagonal errors)</li>
+            <li>Inference latency <20ms per classification for real-time operation</li>
+        </ul>
+
+        <h2>ROS2 System Integration</h2>
+        
+        <h3>Real-Time Classification Node</h3>
+        <p>
+            ROS2 node processes live IMU data and publishes terrain classifications at 50Hz. Architecture includes:
+        </p>
+        <ul>
+            <li><strong>IMU Subscription:</strong> Subscribes to <code>/imu/data</code> topic (sensor_msgs/Imu) at 50Hz</li>
+            <li><strong>Sliding Window Buffer:</strong> Maintains 100-sample circular buffer (2 seconds) for feature extraction</li>
+            <li><strong>Feature Computation:</strong> Extracts 100 features using optimized NumPy operations</li>
+            <li><strong>Classification Pipeline:</strong> Applies StandardScaler → LDA → SVM pipeline for prediction</li>
+            <li><strong>Result Publishing:</strong> Publishes terrain class to <code>/terrain_class</code> topic (std_msgs/String)</li>
+        </ul>
+
+        <h3>Asynchronous Processing</h3>
+        <p>
+            System processes IMU data asynchronously, updating the sliding window buffer with each measurement while maintaining separate thread for feature extraction and classification. This ensures no IMU messages are dropped during computation-intensive operations.
+        </p>
+
+        <h2>Synthetic Data Generation</h2>
+        <p>
+            Physics-based synthetic IMU generator models realistic terrain-specific vibration characteristics:
+        </p>
+        <ul>
+            <li><strong>Asphalt:</strong> Low-amplitude (0.05m/s²), low-frequency (2Hz) smooth variations from stable hard surface</li>
+            <li><strong>Grass:</strong> Medium-amplitude (0.15m/s²), medium-frequency (5Hz) damped oscillations from compliant surface</li>
+            <li><strong>Gravel:</strong> High-amplitude (0.3m/s²), high-frequency (12Hz) irregular vibrations from loose aggregate</li>
+            <li><strong>Tile:</strong> Low-amplitude (0.08m/s²), very low-frequency (1Hz) with periodic patterns from joint spacing</li>
+        </ul>
+        <p>
+            Generated 150 seconds per terrain type (37,500 total samples) with added Gaussian noise (σ=0.02) simulating real sensor characteristics and environmental disturbances.
+        </p>
+
+        <h2>Results and Validation</h2>
+        
+        <h3>Classification Performance</h3>
+        <ul>
+            <li><strong>Test Accuracy:</strong> 100% (zero misclassifications)</li>
+            <li><strong>Cross-Validation:</strong> 100% mean accuracy across 5 folds</li>
+            <li><strong>Inference Speed:</strong> <20ms per classification (suitable for 50Hz operation)</li>
+            <li><strong>Class Separability:</strong> Perfect linear separation in 3D LDA space</li>
+        </ul>
+
+        <h3>Real-Time System Validation</h3>
+        <p>
+            Successfully demonstrated real-time classification with test IMU publisher cycling through terrains. System correctly identifies terrain transitions within 2 seconds (buffer fill time) and maintains stable classifications with no oscillations between classes.
+        </p>
+
+        <h2>Key Learnings</h2>
+        <ul>
+            <li>Feature engineering is critical - combining time and frequency domain features captures complementary terrain characteristics</li>
+            <li>LDA dimensionality reduction not only improves computational efficiency but also provides interpretable visualization of class separation</li>
+            <li>Proper sliding window buffering and asynchronous processing enables real-time operation without dropping sensor data</li>
+            <li>Synthetic data generation with physics-based models enables rapid prototyping before hardware integration</li>
+        </ul>
+
+        <h2>Next Steps</h2>
+        
+        <h3>Hardware Integration (January 2025)</h3>
+        <ul>
+            <li><strong>Arduino IMU Integration:</strong> Replace synthetic data with real MPU6050 or BMI088 sensor</li>
+            <li><strong>Physical Terrain Testing:</strong> Validate classifier on real-world surfaces</li>
+            <li><strong>Dataset Refinement:</strong> Record labeled IMU data from actual robot traversals to retrain model with real sensor characteristics</li>
+            <li><strong>Mobile Robot Deployment:</strong> Integrate with TurtleBot3 navigation stack for adaptive path planning</li>
+        </ul>
+
+        <h3>System Enhancements</h3>
+        <ul>
+            <li><strong>Additional Terrain Types:</strong> Expand to sand, mud, snow, carpet classification</li>
+            <li><strong>Confidence Estimation:</strong> Add probability outputs for uncertainty quantification</li>
+            <li><strong>Online Learning:</strong> Implement incremental learning for new terrains without full retraining</li>
+            <li><strong>Multi-Modal Fusion:</strong> Combine IMU with LiDAR geometry for robust terrain mapping</li>
+        </ul>
+
+        <a href="https://github.com/thiagopari/terrain_classifier" target="_blank" class="github-link">View on GitHub →</a>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2024 Thiago Pari | Built with focus and simplicity</p>
+    </footer>
+
+</body>
+</html>
